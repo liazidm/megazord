@@ -29,10 +29,10 @@ def download(link, folder, filename)
 		then
   			Net::HTTP.start(link.host) do |http|
     			resp = http.get(link.path)
-    		open(folder + filename, "wb") do |file|
-        		file.write(resp.body)
+    			open(folder + filename, "wb") do |file|
+    				file.write(resp.body)
 	    		end
-	    	end
+    		end
     	elsif (link.scheme == "https")
 			http = Net::HTTP.new(link.host, 443)
 			http.use_ssl = true
@@ -41,8 +41,8 @@ def download(link, folder, filename)
 			response = http.request(request)
 			open(folder + filename, "wb") do |file|
         		file.write(response.body)
-	    		end
-	    	end
+    		end
+	end
 end
 
 def choice(input, link, folder, filename)
@@ -51,8 +51,8 @@ def choice(input, link, folder, filename)
 	end
 end
 
-
-download("https://raw.githubusercontent.com/fancyapps/fancyBox/master/source/jquery.fancybox.js", "js/", "jquery.fancybox.min.js")
+header = ""
+## INIT ##
 puts "Megazord : initialisation de l'exosquelette"
 command("git clone https://github.com/lmetdaoui/megazord.git .")
 
@@ -63,6 +63,10 @@ while(jquery != 'y' && jquery != 'n')
 	jquery = STDIN.gets.chomp
 end
 choice(jquery, "http://code.jquery.com/jquery.min.js", "js/", "jquery.min.js")
+if(jquery == 'y')
+	then
+		header += "<script type='text/javscript' href='js/jquery.min.js'></script>\n"
+end
 
 ## FANCYBOX ##
 popin = ''
@@ -75,6 +79,11 @@ choice(popin, "https://raw.githubusercontent.com/fancyapps/fancyBox/master/sourc
 choice(popin, "https://raw.githubusercontent.com/fancyapps/fancyBox/master/source/fancybox_overlay.png", "js/", "fancybox_overlay.png")
 choice(popin, "https://raw.githubusercontent.com/fancyapps/fancyBox/master/source/fancybox_loading.gif", "js/", "fancybox_loading.gif")
 choice(popin, "https://raw.githubusercontent.com/fancyapps/fancyBox/master/source/jquery.fancybox.css", "css/", "jquery.fancybox.css")
+if(popin == 'y')
+	then
+		header += "<script type='text/javscript' href='js/jquery.min.js'></script>\n"
+		header += "<link rel='stylesheet' href='css/jquery.fancybox.css'/>\n"
+end
 puts "Force CSS : initialisation des composants primaires"
 command("gem update --system")
 command("gem install compass")
@@ -84,3 +93,10 @@ command("gem install uglifier")
 puts "Déclenchement de la phase finale"
 command("gem install image-optimizer")
 puts "Vous etes aux commandes."
+
+## SCRIPT TO ADD ##
+if(header != "")
+	then
+		puts "A ajouter entre vos balises <head> : "
+		puts header
+end
