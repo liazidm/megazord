@@ -91,11 +91,13 @@ command("gem install compass")
 puts "Assemblage du Megazord en cours ..."
 puts "Ajout des fonctionnalités perfectionnantes"
 command("gem install uglifier")
+command("gem install smusher")
+
 puts "Déclenchement de la phase finale"
-command("gem install image-optimizer")
 command("gem install filewatcher")
 command("gem install yui-compressor")
 puts "Vous etes aux commandes."
+
 
 ## SCRIPT TO ADD ##
 if(header != "")
