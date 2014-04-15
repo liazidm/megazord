@@ -1,3 +1,4 @@
+## author : Liazid METDAOUI ##
 ## Dependencies 
 # => Git
 # => RUBY (OBVIOUSLY)
@@ -79,8 +80,8 @@ choice(popin, "https://raw.githubusercontent.com/fancyapps/fancyBox/master/sourc
 choice(popin, "https://raw.githubusercontent.com/fancyapps/fancyBox/master/source/fancybox_overlay.png", "js/", "fancybox_overlay.png")
 choice(popin, "https://raw.githubusercontent.com/fancyapps/fancyBox/master/source/fancybox_loading.gif", "js/", "fancybox_loading.gif")
 choice(popin, "https://raw.githubusercontent.com/fancyapps/fancyBox/master/source/jquery.fancybox.css", "css/", "jquery.fancybox.css")
-if(popin == 'y')
-	then
+if(popin == 'y'
+)	then
 		header += "<script type='text/javscript' href='js/jquery.min.js'></script>\n"
 		header += "<link rel='stylesheet' href='css/jquery.fancybox.css'/>\n"
 end
@@ -92,6 +93,8 @@ puts "Ajout des fonctionnalités perfectionnantes"
 command("gem install uglifier")
 puts "Déclenchement de la phase finale"
 command("gem install image-optimizer")
+command("gem install filewatcher")
+command("gem install yui-compressor")
 puts "Vous etes aux commandes."
 
 ## SCRIPT TO ADD ##
